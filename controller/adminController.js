@@ -15,7 +15,7 @@ const adminRegister = async (req,res) => {
 
         if(!email || !password)
         {
-          return res.status(401).json({message:"Please fill the field properly"})
+          return res.status(400).json({message:"Please fill the field properly"})
         
         } else {
             const spassword = await secure(req.body.password);
@@ -38,7 +38,7 @@ const adminRegister = async (req,res) => {
           }
     } catch (error) {
         
-        res.status(401).json({ message: error.message });
+        res.status(400).json({ message: error.message });
     }
 
 }
@@ -55,11 +55,11 @@ const adminLogin = async (req,res) =>{
     let user = await Admin.findOne({ email: req.body.email });
 
     if (!user) {
-      return res.status(404).send({ error: "invalid email" });
+      return res.status(400).send({ error: "invalid credentials" });
 
     } 
     if (!user.isAdmin === true) {
-        return res.status(404).send({ error: "you are not admin" });
+        return res.status(400).send({ error: "you are not admin" });
   
       } 
 
@@ -70,7 +70,7 @@ const adminLogin = async (req,res) =>{
       );
 
       if (!checkpassword) {
-        return res.status(404).send({ error: "invalid password" });
+        return res.status(400).send({ error: "invalid credentials" });
       }
       const token = await createtoken(user._id);
 
