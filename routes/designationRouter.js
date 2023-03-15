@@ -10,6 +10,9 @@ designationRouter.get("/getDesignation",designationController.getDesignation)
 
 designationRouter.put("/updateDesignation/:id",designationController.updateDesignation)
 
+designationRouter.delete("/deleteDesignation/:id",designationController.deleteDesignation)
+
+
 
 
 
