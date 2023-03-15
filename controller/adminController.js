@@ -78,7 +78,7 @@ const adminLogin = async (req,res) =>{
 
       let Id = user._id;
 
-      res.status(200).send({ success: "😉welcome..!!", token, Id });
+      res.status(200).send({token, Id });
     }
   }
 
