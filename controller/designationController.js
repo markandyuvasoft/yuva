@@ -53,7 +53,7 @@ const designationId = async (req,res) =>{
             res.status(404).send({message : "designation not found"})
         }
         else {
-            res.status(200).send({designationId})
+            res.status(200).send({designation:designationId})
         }
     } catch (error) {
         res.status(400).send({ message: error.message });
