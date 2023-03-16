@@ -59,7 +59,7 @@ const adminLogin = async (req,res) =>{
         return res.status(400).send({ error: "invalid credentials" });
   
       } 
-      if (!user.isAdmin === true) {
+      if (user.isAdmin != true) {
           return res.status(400).send({ error: "you are not admin" });
     
         } 
@@ -86,6 +86,7 @@ const adminLogin = async (req,res) =>{
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
+
 }
 
 

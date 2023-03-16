@@ -62,8 +62,65 @@ const getTeam = async (req,res) =>{
     }
 }
 
+
+
+const updateTeam = async (req,res) =>{
+
+  try {
+    const id = req.params.id;
+    const { firstName, lastName, email,contact,designation } = req.body;
+  
+    const team = await Team.findByIdAndUpdate(id, req.body);
+  
+    if (!team) {
+      return res.status(404).send({message: "team not found"});
+    }
+  
+    team.firstName = firstName;
+    team.lastName = lastName;
+    team.email = email;
+    team.contact = contact;
+    team.designation = designation;
+
+  
+    if (req.file) {
+      const result = await cloudinary.uploader.upload(req.file.path);
+      team.teamProfile = result.secure_url;
+    }
+  
+    await team.save();
+  
+    res.status(200).json({ success: "team updated successfully" });
+
+  } catch (error) {
+    res.status(400).send({ message: error.message });
+  }
+}
+
+
+const deleteTeam = async (req,res) =>{
+
+  try {
+    const id = req.params.id
+
+    const team = await Team.findByIdAndDelete(id)
+
+    if(!team) {
+      res.status(404).send({ message: "team details not found"})
+    }
+    else {
+      res.status(200).send({ message: "team deleted successfully"})
+    }
+
+  } catch (error) {
+    res.status(400).send({ message: error.message });
+  }
+}
+
 export default {
     teamController,
     createTeam,
-    getTeam
+    getTeam,
+    deleteTeam,
+    updateTeam
 }
