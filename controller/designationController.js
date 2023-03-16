@@ -12,12 +12,17 @@ const createDesignation = async (req,res) =>{
         if(!name) {
             res.status(400).send({message: "please select your designation"})
         }
+        const designationData = await Designation.findOne({ name: req.body.name });
+    
+        if (designationData) {
+          res.status(400).send({ error: "designation already exist" });
+        }
         else{
-            const designation = new Designation({
-                name
-            })
-            await designation.save()
-            res.status(200).send({success: "created your designation"})
+        const designation = new Designation({
+            name
+        })
+        await designation.save()
+        res.status(200).send({success: "created your designation"})
         }
     } catch (error) {
         res.status(400).send({ message: error.message });
