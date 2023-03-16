@@ -46,42 +46,45 @@ const adminRegister = async (req,res) => {
 
 const adminLogin = async (req,res) =>{
 
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
-  if (!email || !password) {
-    res.status(400).send({ error: "please fill the proper field " });
-
-  } else {
-    let user = await Admin.findOne({ email: req.body.email });
-
-    if (!user) {
-      return res.status(400).send({ error: "invalid credentials" });
-
-    } 
-    if (!user.isAdmin === true) {
-        return res.status(400).send({ error: "you are not admin" });
+    if (!email || !password) {
+      res.status(400).send({ error: "please fill the proper field " });
+  
+    } else {
+      let user = await Admin.findOne({ email: req.body.email });
+  
+      if (!user) {
+        return res.status(400).send({ error: "invalid credentials" });
   
       } 
-
-    else {
-      const checkpassword = await bcrypt.compare(
-        req.body.password,
-        user.password
-      );
-
-      if (!checkpassword) {
-        return res.status(400).send({ error: "invalid credentials" });
+      if (!user.isAdmin === true) {
+          return res.status(400).send({ error: "you are not admin" });
+    
+        } 
+  
+      else {
+        const checkpassword = await bcrypt.compare(
+          req.body.password,
+          user.password
+        );
+  
+        if (!checkpassword) {
+          return res.status(400).send({ error: "invalid credentials" });
+        }
+        const token = await createtoken(user._id);
+  
+        // console.log(token);
+  
+        let Id = user._id;
+  
+        res.status(200).send({token, Id });
       }
-      const token = await createtoken(user._id);
-
-      // console.log(token);
-
-      let Id = user._id;
-
-      res.status(200).send({token, Id });
     }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
-
 }
 
 
