@@ -8,6 +8,8 @@ designationRouter.post("/createDesignation",designationController.createDesignat
 
 designationRouter.get("/getDesignation",designationController.getDesignation)
 
+designationRouter.get("/singleDesignation/:id",designationController.designationId)
+
 designationRouter.put("/updateDesignation/:id",designationController.updateDesignation)
 
 designationRouter.delete("/deleteDesignation/:id",designationController.deleteDesignation)

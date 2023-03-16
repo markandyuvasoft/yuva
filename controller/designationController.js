@@ -31,10 +31,29 @@ const getDesignation = async (req,res) =>{
         const designation = await Designation.find({})
 
         if(designation.length === 0) {
-            res.status(400).send({message: "not found any designation"})
+            res.status(404).send({message: "not found any designation"})
         }
         else{
             res.status(200).send({success: "Designations",designation})
+        }
+    } catch (error) {
+        res.status(400).send({ message: error.message });
+    }
+}
+
+
+const designationId = async (req,res) =>{
+
+    try {
+        const id = req.params.id
+
+        const designationId = await Designation.findById(id)
+    
+        if(designationId == null) {
+            res.status(404).send({message : "designation not found"})
+        }
+        else {
+            res.status(200).send({designationId})
         }
     } catch (error) {
         res.status(400).send({ message: error.message });
@@ -86,5 +105,6 @@ export default {
     createDesignation,
     getDesignation,
     updateDesignation,
-    deleteDesignation
+    deleteDesignation,
+    designationId
 }
