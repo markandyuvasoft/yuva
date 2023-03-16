@@ -4,9 +4,9 @@ import upload from '../image/image.js'
 
 const teamRouter = express.Router()
 
-teamRouter.post("/createTeam",upload.single('teamProfile'),teamController.createTeam)
+teamRouter.post("/team",upload.single('teamProfile'),teamController.createTeam)
 
-teamRouter.get("/getTeam",teamController.getTeam)
+teamRouter.get("/team",teamController.getTeam)
 
 
 

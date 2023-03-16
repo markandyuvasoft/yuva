@@ -52,7 +52,7 @@ const getTeam = async (req,res) =>{
         .populate('designation', {name:1, _id:1})
     
         if(teams.length === 0) {
-            res.status(400).send({message: "not found any team"})
+            res.status(404).send({message: "not found any team"})
         }
         else {
             res.status(200).send({message : "team details",teams})

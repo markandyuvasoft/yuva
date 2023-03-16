@@ -1,5 +1,5 @@
 import Jwt from 'jsonwebtoken'
-import Admin from '../models/adminModel'
+import Admin from '../models/adminModel.js'
 
 const checkauth=(req,res,next)=>{
     

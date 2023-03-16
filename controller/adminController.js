@@ -75,7 +75,8 @@ const adminLogin = async (req,res) =>{
         }
         const token = await createtoken(user._id);
   
-        // console.log(token);
+      user.token = token;
+      await user.save();
   
         let Id = user._id;
   

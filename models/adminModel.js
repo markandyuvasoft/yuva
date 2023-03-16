@@ -13,6 +13,9 @@ const adminSchema = new mongoose.Schema({
     isAdmin:{
         default : false,
         type: Boolean
+    },
+    token : {
+        type : String
     }
 })
 

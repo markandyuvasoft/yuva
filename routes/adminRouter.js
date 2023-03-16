@@ -8,5 +8,4 @@ adminRouter.post("/register",adminController.adminRegister)
 adminRouter.post("/login",adminController.adminLogin)
 
 
-
 export default adminRouter
