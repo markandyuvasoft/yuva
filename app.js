@@ -6,6 +6,7 @@ import cors from "cors";
 import adminRouter from "./routes/adminRouter.js";
 import designationRouter from "./routes/designationRouter.js";
 import teamRouter from "./routes/teamRouter.js";
+import clientRouter from "./routes/clientRouter.js";
 
 import *as path from 'path'
 
@@ -25,6 +26,8 @@ mongoose.set('strictQuery',true);
 app.use("/api/v1",adminRouter)
 app.use("/api/v1",designationRouter)
 app.use("/api/v1",teamRouter)
+app.use("/api/v1",clientRouter)
+
 
 
 

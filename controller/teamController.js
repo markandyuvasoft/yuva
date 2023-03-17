@@ -63,6 +63,24 @@ const getTeam = async (req,res) =>{
 }
 
 
+const singleTeam = async (req,res) =>{
+
+  try {
+    const id = req.params.id
+
+    const teamId = await Team.findById(id)
+    .populate('designation', {name:1, _id:1})
+  
+    if(teamId == null) {
+      res.status(404).send({message : "team not found"})
+    }else {
+      res.status(200).send({team:teamId})
+    }
+  } catch (error) {
+    res.status(400).send({ message: error.message });
+  }
+}
+
 
 const updateTeam = async (req,res) =>{
 
@@ -122,5 +140,6 @@ export default {
     createTeam,
     getTeam,
     deleteTeam,
-    updateTeam
+    updateTeam,
+    singleTeam
 }

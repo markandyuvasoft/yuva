@@ -8,7 +8,7 @@ const clientSchema = new mongoose.Schema({
     city : {
         type : String
     },
-    Description : {
+    description : {
         type : String
     }
 })
