@@ -19,7 +19,13 @@ const createTeam = async (req, res) => {
   
       if (!firstName || !lastName || !email || !contact || !designation) {
         res.status(400).send({ message: "Please fill in all required fields." });
-      } else {
+      }
+      const teamData = await Team.findOne({ email: req.body.email });
+    
+      if (teamData) {
+        res.status(400).send({ error: "email already exist" });
+      }
+      else {
         let teamProfile;
         let cloudinary_id;
   
