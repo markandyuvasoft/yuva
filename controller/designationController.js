@@ -4,7 +4,7 @@ import Designation from '../models/designation.js'
 
 const designationController = express.Router()
 
-const createDesignation = async (req,res) =>{
+const create = async (req,res) =>{
 
     try {
         const { name } = req.body
@@ -30,7 +30,7 @@ const createDesignation = async (req,res) =>{
 }
 
 
-const getDesignation = async (req,res) =>{
+const fetchAll = async (req,res) =>{
 
     try {
         const designation = await Designation.find({})
@@ -47,7 +47,7 @@ const getDesignation = async (req,res) =>{
 }
 
 
-const designationId = async (req,res) =>{
+const fetch = async (req,res) =>{
 
     try {
         const id = req.params.id
@@ -66,7 +66,7 @@ const designationId = async (req,res) =>{
 }
 
 
-const updateDesignation = async (req,res) => {
+const update = async (req,res) => {
 
     try {
         const { name } = req.body
@@ -91,7 +91,7 @@ const updateDesignation = async (req,res) => {
     }
 }
 
-const deleteDesignation = async (req,res) =>{
+const destroy = async (req,res) =>{
 
     try {
         const id = req.params.id
@@ -113,9 +113,9 @@ const deleteDesignation = async (req,res) =>{
 
 export default {
     designationController,
-    createDesignation,
-    getDesignation,
-    updateDesignation,
-    deleteDesignation,
-    designationId
+    create,
+    fetchAll,
+    update,
+    destroy,
+    fetch
 }

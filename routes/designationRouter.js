@@ -4,15 +4,15 @@ import designationController from "../controller/designationController.js"
 const designationRouter = express.Router()
 
 
-designationRouter.post("/designation",designationController.createDesignation)
+designationRouter.post("/designation",designationController.create)
 
-designationRouter.get("/designation",designationController.getDesignation)
+designationRouter.get("/designation",designationController.fetchAll)
 
-designationRouter.get("/designation/:id",designationController.designationId)
+designationRouter.get("/designation/:id",designationController.fetch)
 
-designationRouter.put("/designation/:id",designationController.updateDesignation)
+designationRouter.put("/designation/:id",designationController.update)
 
-designationRouter.delete("/designation/:id",designationController.deleteDesignation)
+designationRouter.delete("/designation/:id",designationController.destroy)
 
 
 
