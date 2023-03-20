@@ -3,7 +3,7 @@ import Client from "../models/clientModel.js"
 
 const clientController = express.Router()
 
-const createClient = async (req,res) =>{
+const create = async (req,res) =>{
 
     try {
         const {firstName , city , description} = req.body
@@ -25,7 +25,7 @@ const createClient = async (req,res) =>{
 }
 
 
-const getClients = async (req,res) =>{
+const fetchAll = async (req,res) =>{
 
     try {
         const clients = await Client.find({})
@@ -41,7 +41,7 @@ const getClients = async (req,res) =>{
     }
 }
 
-const getClient = async (req,res) =>{
+const fetch = async (req,res) =>{
 
     try {
         const id = req.params.id
@@ -60,7 +60,7 @@ const getClient = async (req,res) =>{
 }
 
 
-const updateClient = async (req,res) =>{
+const update = async (req,res) =>{
     
     try {
         const {firstName, city, description} = req.body
@@ -84,7 +84,7 @@ const updateClient = async (req,res) =>{
 }
 
 
-const deleteClient = async (req,res) =>{
+const destroy = async (req,res) =>{
 
     try {
         const id = req.params.id
@@ -104,9 +104,9 @@ const deleteClient = async (req,res) =>{
 
 export default {
     clientController,
-    createClient,
-    getClients,
-    getClient,
-    updateClient,
-    deleteClient
+    create,
+    fetchAll,
+    fetch,
+    update,
+    destroy
 }

@@ -4,15 +4,15 @@ import clientController from "../controller/clientController.js"
 
 const clientRouter = express.Router()
 
-clientRouter.post("/client",clientController.createClient)
+clientRouter.post("/client",clientController.create)
 
-clientRouter.get("/client",clientController.getClients)
+clientRouter.get("/client",clientController.fetchAll)
 
-clientRouter.get("/client/:id",clientController.getClient)
+clientRouter.get("/client/:id",clientController.fetch)
 
-clientRouter.put("/client/:id",clientController.updateClient)
+clientRouter.put("/client/:id",clientController.update)
 
-clientRouter.delete("/client/:id",clientController.deleteClient)
+clientRouter.delete("/client/:id",clientController.destroy)
 
 
 
