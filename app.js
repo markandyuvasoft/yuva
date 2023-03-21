@@ -8,6 +8,8 @@ import designationRouter from "./routes/designationRouter.js";
 import teamRouter from "./routes/teamRouter.js";
 import clientRouter from "./routes/clientRouter.js";
 import eventRouter from "./routes/eventRouter.js";
+import careerRouter from "./routes/careerRouter.js"
+import skillRouter from "./routes/skillRouter.js"
 
 import *as path from 'path'
 
@@ -29,6 +31,10 @@ app.use("/api/v1",designationRouter)
 app.use("/api/v1",teamRouter)
 app.use("/api/v1",clientRouter)
 app.use("/api/v1",eventRouter)
+app.use("/api/v1",careerRouter)
+app.use("/api/v1",skillRouter)
+
+
 
 
 
