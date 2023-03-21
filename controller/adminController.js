@@ -3,6 +3,7 @@ import Admin from '../models/adminModel.js'
 import secure from "../bcript/bcript.js"
 import createtoken from "../token/authToken.js";
 import bcrypt from "bcrypt";
+import * as cache  from '../utils/cache.utils.js'
 
 
 const adminController = express.Router()
@@ -89,10 +90,22 @@ const adminLogin = async (req,res) =>{
 
 }
 
+const logout = async (req,res) =>{
+  
+  const token = req.token;
+  const now = new Date();
+  const expire = new Date(req.user.exp);
+  const milliseconds = now.getTime() - expire.getTime();
+  /* ----------------------------- BlackList Token ---------------------------- */
+  await cache.set(token, token, milliseconds);
+
+  return res.json({ message: 'Logged out successfully' });
+}
 
 
 export default {
     adminController,
     adminRegister,
-    adminLogin
+    adminLogin,
+    logout
 }

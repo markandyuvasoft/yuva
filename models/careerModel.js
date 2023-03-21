@@ -7,7 +7,8 @@ const careerSchema = new mongoose.Schema({
         type : String
     },
     skill : {
-        type : String
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "Skill"
     },
     location : {
         type : String
