@@ -23,8 +23,9 @@ const app=express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
- const filePath = path.join("./public/assets/images");
- fs.readFileSync(filePath, JSON.stringify(filePath));
+const filePath = path.join(__dirname, "public/assets/images");
+const fileContent = fs.readFileSync(filePath);
+console.log(fileContent.toString());
 
 app.use(cors())
 mongoose.set('strictQuery',true);
