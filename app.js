@@ -10,6 +10,7 @@ import clientRouter from "./routes/clientRouter.js";
 import eventRouter from "./routes/eventRouter.js";
 import careerRouter from "./routes/careerRouter.js"
 import skillRouter from "./routes/skillRouter.js"
+import fs from "fs"
 
 import *as path from 'path'
 
@@ -21,6 +22,9 @@ const app=express();
 // midleware
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+
+ const filePath = path.join("/tmp", "data.json");
+ fs.writeFileSync(filePath, JSON.stringify(data));
 
 app.use(cors())
 mongoose.set('strictQuery',true);
