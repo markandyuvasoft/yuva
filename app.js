@@ -23,7 +23,7 @@ const app=express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
- const filePath = path.join("/public/assets/images", "data.json");
+ const filePath = path.join("./public/assets/images", "data.json");
  fs.writeFileSync(filePath, JSON.stringify(filePath));
 
 app.use(cors())
