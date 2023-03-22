@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
  const filePath = path.join("/tmp", "data.json");
- fs.writeFileSync(filePath, JSON.stringify(data));
+ fs.writeFileSync(filePath, JSON.stringify(filePath));
 
 app.use(cors())
 mongoose.set('strictQuery',true);
