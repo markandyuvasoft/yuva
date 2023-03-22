@@ -23,6 +23,11 @@ const app=express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 const filePath = path.join(__dirname, "public/assets/images");
 const fileContent = fs.readFileSync(filePath);
 console.log(fileContent.toString());
