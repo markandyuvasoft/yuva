@@ -19,7 +19,12 @@ const create = async (req,res) =>{
         }
         else{
         const designation = new Designation({
+<<<<<<< HEAD
             name
+=======
+            name,
+            owner: req.user
+>>>>>>> featur/development
         })
         await designation.save()
         res.status(200).send({success: "created your designation"})

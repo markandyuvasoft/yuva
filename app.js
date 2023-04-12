@@ -8,9 +8,9 @@ import designationRouter from "./routes/designationRouter.js";
 import teamRouter from "./routes/teamRouter.js";
 import clientRouter from "./routes/clientRouter.js";
 import eventRouter from "./routes/eventRouter.js";
-import careerRouter from "./routes/careerRouter.js"
-import skillRouter from "./routes/skillRouter.js"
-// import fs from "fs"
+import careerRouter from "./routes/careerRouter.js";
+import skillRouter from "./routes/skillRouter.js";
+import blogRouter from "./routes/blogRouter.js";
 
 import *as path from 'path'
 
@@ -23,15 +23,6 @@ const app=express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-// import { fileURLToPath } from 'url';
-// import path from 'path';
-
-// const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-// const filePath = path.join(__dirname, "public/assets/images");
-// const fileContent = fs.readFileSync(filePath);
-// console.log(fileContent.toString());
-
 app.use(cors())
 mongoose.set('strictQuery',true);
 
@@ -43,6 +34,8 @@ app.use("/api/v1",clientRouter)
 app.use("/api/v1",eventRouter)
 app.use("/api/v1",careerRouter)
 app.use("/api/v1",skillRouter)
+app.use("/api/v1",blogRouter)
+
 
 
 
