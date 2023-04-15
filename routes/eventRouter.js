@@ -14,5 +14,10 @@ eventRouter.put("/event/:id",eventController.update)
 
 eventRouter.delete("/event/:id",eventController.destroy)
 
+eventRouter.delete("/event/:id",eventController.destroy)
+
+eventRouter.get("/paginate",eventController.pagination)
+
+
 
 export default eventRouter

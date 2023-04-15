@@ -100,11 +100,42 @@ const destroy = async (req,res) =>{
 }
 
 
+const pagination = async (req,res) =>{
+
+    try {
+        const { page = 1, limit = 10, sort = 'createdAt' } = req.query;
+      
+        // Calculate total number of documents to help with pagination
+        const totalDocuments = await Event.countDocuments();
+      
+        // Find documents and apply sorting, pagination, and selection
+        const events = await Event.find({})
+          .sort({ [sort]: 1 })
+          .skip((page - 1) * limit)
+          .limit(limit)
+          .select('-__v');
+      
+        // Return paginated response with metadata
+        res.status(200).json({
+          events,
+          totalPages: Math.ceil(totalDocuments / limit),
+          currentPage: page,
+          totalDocuments,
+        });
+        
+      } catch (error) {
+        res.status(400).json({ message: error.message });
+      }
+      
+}
+
+
 export default {
     eventController,
     create,
     fetch,
     fetchAll,
     update,
-    destroy
+    destroy,
+    pagination
 }
