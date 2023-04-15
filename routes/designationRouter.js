@@ -5,9 +5,9 @@ import checkauth from "../middleware/auth.js"
 const designationRouter = express.Router()
 
 
-designationRouter.post("/designation",checkauth,designationController.create)
+designationRouter.post("/designation",designationController.create)
 
-designationRouter.get("/designation",checkauth,designationController.fetchAll)
+designationRouter.get("/designation",designationController.fetchAll)
 
 designationRouter.get("/designation/:id",designationController.fetch)
 
